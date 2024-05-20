@@ -6,6 +6,7 @@ const error = ref("");
 
 const emit = defineEmits<{
   (e: "add", text: string): void;
+  (e: "submitList", text:string): void;
 }>();
 
 const handleSubmit = () => {
@@ -16,7 +17,12 @@ const handleSubmit = () => {
   } else {
     error.value = "Fyll i ett namn! ";
   }
-  emit("add", userInput.value);
+
+const handleList = () =>{
+
+}
+
+
 };
 </script>
 
@@ -26,6 +32,7 @@ const handleSubmit = () => {
     <input type="text" v-model="userInput" />
     <button>Lägg till</button>
   </form>
+  <p>{{ error }}</p>
 </template>
 
 <style scoped></style>
