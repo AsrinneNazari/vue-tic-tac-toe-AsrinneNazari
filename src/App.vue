@@ -4,7 +4,6 @@ import { Player } from "./models/Player";
 import Form from "./components/Form.vue";
 import { IGameState } from "./models/IGameState";
 import Board from "./components/Board.vue";
-import Reset from "./components/Reset.vue"
 
 const state = ref<IGameState>({
   showGame: false,
@@ -32,9 +31,8 @@ const showGame = () => {
 
 <template>
   <h2>Tik Tac Toe spelet!</h2>
-  <Form @add="addPlayer" @submitList="playerList" />
+  <Form @add="addPlayer"/>
   <button @click="showGame">Spela!</button>
-  <Reset/>
   <Board :players="players" v-if="state.showGame" />
 </template>
 

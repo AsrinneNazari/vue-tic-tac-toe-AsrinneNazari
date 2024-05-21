@@ -17,8 +17,6 @@ const handleSubmit = () => {
   } else {
     error.value = "Fyll i ett namn! ";
   }
-
-  const handleList = () => {};
 };
 </script>
 
