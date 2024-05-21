@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { Player } from "../models/Player";
 
 interface propsPlayers {
@@ -25,8 +25,31 @@ const resetGame = () => {
     props.players[Math.floor(Math.random() * props.players.length)];
 };
 
-const theMove = () => {
+const theMove = (x, y) => {
+  if (winner.value) return;
+  if ((board.value[x], [y])) return;
+};
 
+const winnerCalculation = (board: (string | null)[]): string | null => {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      return board[a];
+    }
+  }
+  return null;
+};
+const winner = computed(() => winnerCalculation(board.value.flat()));
 </script>
 
 <template>
@@ -35,6 +58,7 @@ const theMove = () => {
 
   <button @click="resetGame">Börja om!</button>
   <p>{{ currentPlayer.name }}s tur att spela!</p>
+  <div v-if="winner">Vinnaren är:{{ winner }}</div>
   <div class="theBoard">
     <div class="square" v-for="(row, x) in board" :key="x">
       <div
@@ -58,5 +82,9 @@ const theMove = () => {
   width: 100px;
   background-color: pink;
   margin-bottom: 0.1em;
+}
+.square:hover {
+  cursor: pointer;
+  background-color: rgb(255, 146, 164);
 }
 </style>
