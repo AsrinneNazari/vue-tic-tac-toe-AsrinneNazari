@@ -1,11 +1,9 @@
 export class Player {
   id: number;
-  X: boolean;
-  O: boolean;
+  team: string;
 
-  constructor(public name: string, X: boolean, O: boolean) {
+  constructor(public name: string, team: string) {
     this.id = Date.now();
-    this.X = X;
-    this.O = O;
+    this.team = team;
   }
 }

@@ -6,11 +6,11 @@ const error = ref("");
 
 const emit = defineEmits<{
   (e: "add", text: string): void;
-  (e: "submitList", text:string): void;
+  (e: "submitList", text: string): void;
 }>();
 
 const handleSubmit = () => {
-    if (userInput.value !== "") {
+  if (userInput.value !== "") {
     emit("add", userInput.value);
     userInput.value = "";
     error.value = "";
@@ -18,11 +18,7 @@ const handleSubmit = () => {
     error.value = "Fyll i ett namn! ";
   }
 
-const handleList = () =>{
-
-}
-
-
+  const handleList = () => {};
 };
 </script>
 
