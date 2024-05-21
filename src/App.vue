@@ -16,8 +16,6 @@ const addPlayer = (name: string) => {
   }
   const team = players.value.length === 0 ? "X" : "O";
   players.value.push(new Player(name, team));
-  console.log(players.value);
-
 };
 
 const showGame = () => {
@@ -31,7 +29,7 @@ const showGame = () => {
 
 <template>
   <h2>Tik Tac Toe spelet!</h2>
-  <Form @add="addPlayer"/>
+  <Form @add="addPlayer" />
   <button @click="showGame">Spela!</button>
   <Board :players="players" v-if="state.showGame" />
 </template>
