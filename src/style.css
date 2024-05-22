@@ -1,8 +1,6 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 600;
   background-color: whitesmoke;
 }
 
@@ -14,11 +12,6 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -26,12 +19,12 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #c5c5c5;
+  background-color: #ff9b9b;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #0b0b0b;
+  box-shadow: rgb(255, 100, 100) 0px 0px 10px;
 }
 button:focus,
 button:focus-visible {

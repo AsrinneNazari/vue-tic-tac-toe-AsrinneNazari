@@ -15,7 +15,7 @@ const board = ref(["", "", "", "", "", "", "", "", ""]);
 const resetGame = () => {
   board.value = ["", "", "", "", "", "", "", "", ""];
 
-  gameOver.value == false
+  gameOver.value == false;
   currentPlayer.value =
     props.players[Math.floor(Math.random() * props.players.length)];
 };
@@ -85,7 +85,9 @@ const theTie = () => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.1em;
+  box-shadow: rgb(28, 12, 12) 0px 0px 10px;
 }
+
 .square {
   height: 100px;
   width: 100px;
@@ -94,6 +96,7 @@ const theTie = () => {
   align-items: center;
   justify-content: center;
   font-size: 3em;
+  text-shadow: rgb(28, 12, 12) 0px 0px 10px;
 }
 .square:hover {
   cursor: pointer;
