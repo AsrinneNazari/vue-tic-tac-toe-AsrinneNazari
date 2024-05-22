@@ -29,13 +29,11 @@ const showGame = () => {
 </script>
 
 <template>
-  <h1>Tik Tac Toe spelet!</h1>
+  <h1>Tik Tac Toe </h1>
   <Form @add="addPlayer"v-if="!state.showGame" />
   <button @click="showGame" v-if="!state.showGame">Spela!</button>
   <Board :players="players" v-if="state.showGame" />
 </template>
 
 <style scoped>
-h2 {
-}
 </style>
