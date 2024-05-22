@@ -8,17 +8,21 @@ interface propsPlayers {
 const props = defineProps<propsPlayers>();
 
 let currentPlayer = ref<Player>(props.players[0]);
+const gameOver = ref(false);
 
 const board = ref(["", "", "", "", "", "", "", "", ""]);
 
 const resetGame = () => {
   board.value = ["", "", "", "", "", "", "", "", ""];
 
+  gameOver.value == false
   currentPlayer.value =
     props.players[Math.floor(Math.random() * props.players.length)];
 };
 
 const theMove = (i: number) => {
+  if (gameOver.value == true) return;
+
   if (board.value[i] !== "") {
     return;
   }
@@ -42,6 +46,7 @@ const winnerCalculation = (board: (string | null)[]): string | null => {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      gameOver.value = true;
       return board[a];
     }
   }
@@ -85,7 +90,10 @@ const theTie = () => {
   height: 100px;
   width: 100px;
   background-color: pink;
-  margin-bottom: 0.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
 }
 .square:hover {
   cursor: pointer;
