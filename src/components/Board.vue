@@ -7,27 +7,26 @@ interface propsPlayers {
 }
 const props = defineProps<propsPlayers>();
 
-let currentPlayer = ref<Player[]>([]); //hjälp!!!
+let currentPlayer = ref<Player>(props.players[0]);
 
-const board = ref([
-  ["", "", ""],
-  ["", "", ""],
-  ["", "", ""],
-]);
+const board = ref(["", "", "", "", "", "", "", "", ""]);
 
 const resetGame = () => {
-  board.value = [
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-  ];
+  board.value = ["", "", "", "", "", "", "", "", ""];
+
   currentPlayer.value =
     props.players[Math.floor(Math.random() * props.players.length)];
 };
 
-const theMove = (x, y) => {
-  if (winner.value) return;
-  if ((board.value[x], [y])) return;
+const theMove = (i: number) => {
+  console.log(currentPlayer.value);
+  if (board.value[i] !== "") {
+    return;
+  }
+  board.value[i] = currentPlayer?.value?.team!;
+  if (currentPlayer.value === props.players[0]) {
+    currentPlayer.value = props.players[1];
+  } else currentPlayer.value = props.players[0];
 };
 
 const winnerCalculation = (board: (string | null)[]): string | null => {
@@ -49,6 +48,13 @@ const winnerCalculation = (board: (string | null)[]): string | null => {
   }
   return null;
 };
+
+const theTie = () => {
+  board.value.every((cell) => cell !== "") && !winner;
+
+  return board.value.every((cell) => cell !== "") && !winner;
+};
+
 const winner = computed(() => winnerCalculation(board.value.flat()));
 </script>
 
@@ -57,16 +63,17 @@ const winner = computed(() => winnerCalculation(board.value.flat()));
   <p>{{ players[1].name }} har spelpjäs {{ players[1].team }}</p>
 
   <button @click="resetGame">Börja om!</button>
-  <p>{{ currentPlayer.name }}s tur att spela!</p>
+  <p>{{ currentPlayer?.name }}s tur att spela!</p>
+  <div v-if="theTie()">Oavgjort</div>
   <div v-if="winner">Vinnaren är:{{ winner }}</div>
   <div class="theBoard">
-    <div class="square" v-for="(row, x) in board" :key="x">
-      <div
-        class="square"
-        v-for="(cell, y) in row"
-        :key="y"
-        @click="theMove(x, y)"
-      ></div>
+    <div
+      class="square"
+      v-for="(cell, y) in board"
+      :key="y"
+      @click="() => theMove(y)"
+    >
+      {{ cell }}
     </div>
   </div>
 </template>
