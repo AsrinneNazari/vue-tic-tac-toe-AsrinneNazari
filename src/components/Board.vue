@@ -19,7 +19,6 @@ const resetGame = () => {
 };
 
 const theMove = (i: number) => {
-  console.log(currentPlayer.value);
   if (board.value[i] !== "") {
     return;
   }
@@ -49,13 +48,11 @@ const winnerCalculation = (board: (string | null)[]): string | null => {
   return null;
 };
 
+const winner = ref(computed(() => winnerCalculation(board.value.flat())));
+
 const theTie = () => {
-  board.value.every((cell) => cell !== "") && !winner;
-
-  return board.value.every((cell) => cell !== "") && !winner;
+  return board.value.every((cell) => cell !== "") && !winner.value;
 };
-
-const winner = computed(() => winnerCalculation(board.value.flat()));
 </script>
 
 <template>
@@ -64,8 +61,8 @@ const winner = computed(() => winnerCalculation(board.value.flat()));
 
   <button @click="resetGame">Börja om!</button>
   <p>{{ currentPlayer?.name }}s tur att spela!</p>
-  <div v-if="theTie()">Oavgjort</div>
   <div v-if="winner">Vinnaren är:{{ winner }}</div>
+  <div v-if="theTie()">Oavgjort</div>
   <div class="theBoard">
     <div
       class="square"
