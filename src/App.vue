@@ -25,15 +25,17 @@ const showGame = () => {
     alert("Man måste vara två spelare i det här spelet!");
   }
 };
-
 </script>
 
 <template>
-  <h1>Tik Tac Toe </h1>
-  <Form @add="addPlayer"v-if="!state.showGame" />
+  <h1>Tik Tac Toe</h1>
+  <Form @add="addPlayer" v-if="!state.showGame" />
   <button @click="showGame" v-if="!state.showGame">Spela!</button>
   <Board :players="players" v-if="state.showGame" />
 </template>
 
 <style scoped>
+h1 {
+  font-size: 2.5rem;
+}
 </style>

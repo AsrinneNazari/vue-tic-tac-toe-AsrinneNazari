@@ -23,18 +23,17 @@ const handleSubmit = () => {
 <template>
   <form @submit.prevent="handleSubmit">
     <input
-      class="inputField"
       type="text"
       v-model="userInput"
       placeholder="Fyll i ditt användarnamn"
     />
-    <button class="addButton">Lägg till</button>
+    <button>Lägg till</button>
   </form>
   <p>{{ error }}</p>
 </template>
 
 <style scoped>
-.inputField {
+input {
   height: 1.2rem;
   margin-right: 0.5rem;
 }
