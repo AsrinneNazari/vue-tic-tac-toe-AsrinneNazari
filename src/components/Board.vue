@@ -66,7 +66,7 @@ const theTie = () => {
 
   <button @click="resetGame">Börja om!</button>
   <p>{{ currentPlayer?.name }}s tur att spela!</p>
-  <div v-if="winner">Vinnaren är:{{ winner }}</div>
+  <div v-if="winner">Spelaren med spelpjäs: {{ winner }} vann rundan!</div>
   <div v-if="theTie()">Oavgjort</div>
   <div class="theBoard">
     <div
